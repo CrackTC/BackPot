@@ -71,7 +71,7 @@ public class Backup(string name, int maxGenerations)
     {
         if (generation >= Generations.Count)
         {
-            logger.LogWarning("Generation {n} does not exist", generation);
+            logger.LogWarning("Generation {Generation} does not exist", generation);
             return [];
         }
         var path = Generations.ElementAt(MaxGenerations - generation - 1).Path;
@@ -89,7 +89,7 @@ public class Backup(string name, int maxGenerations)
     {
         if (generation >= Generations.Count)
         {
-            logger.LogWarning("Generation {generation} does not exist", generation);
+            logger.LogWarning("Generation {Generation} does not exist", generation);
             return Results.NotFound();
         }
         if (!IsValidName(file))
@@ -100,7 +100,7 @@ public class Backup(string name, int maxGenerations)
         var filePath = Path.Combine(Generations.ElementAt(MaxGenerations - generation - 1).Path, file);
         if (!File.Exists(filePath))
         {
-            logger.LogWarning("File {file} does not exist", file);
+            logger.LogWarning("File {File} does not exist", file);
             return Results.NotFound();
         }
         return Results.File(filePath, "application/octet-stream", file);
