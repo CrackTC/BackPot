@@ -61,6 +61,15 @@ public class Backup(string name, int maxGenerations)
                     File.Delete(filePath);
                     logger.LogWarning("File already exists, overwriting: {Name}", file.Name);
                 }
+
+                var dirName = Path.GetDirectoryName(filePath);
+                if (dirName is null)
+                {
+                    logger.LogWarning("Failed to get directory name for {Name}", file.Name);
+                    continue;
+                }
+
+                Directory.CreateDirectory(dirName);
                 using var stream = File.Create(filePath);
                 await file.CopyToAsync(stream);
             }
