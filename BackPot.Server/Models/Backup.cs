@@ -83,7 +83,7 @@ public class Backup(string name, int maxGenerations)
             logger.LogWarning("Generation {Generation} does not exist", generation);
             return [];
         }
-        var path = Generations.ElementAt(MaxGenerations - generation - 1).Path;
+        var path = Generations.ElementAt(Generations.Count - generation - 1).Path;
         var files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
         return files.Select(file => file[(path.Length + 1)..]);
     }
@@ -106,7 +106,7 @@ public class Backup(string name, int maxGenerations)
             logger.LogWarning("File name contains invalid characters: {Name}", file);
             return Results.BadRequest("File name contains invalid characters");
         }
-        var filePath = Path.Combine(Generations.ElementAt(MaxGenerations - generation - 1).Path, file);
+        var filePath = Path.Combine(Generations.ElementAt(Generations.Count - generation - 1).Path, file);
         if (!File.Exists(filePath))
         {
             logger.LogWarning("File {File} does not exist", file);
