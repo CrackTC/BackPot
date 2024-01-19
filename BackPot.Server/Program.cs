@@ -41,12 +41,12 @@ internal abstract class Program
 
         app.MapPost(
             "/backups/{name:regex(^[a-zA-Z0-9_ -]+$)}",
-            (string name,
+            async (string name,
              BackPotService service,
              [FromHeader(Name = "x-token")] string token,
              [FromForm] IFormFileCollection files,
              ILogger<Backup> logger)
-                => service.Upload(token, name, files, logger)
+                => await service.Upload(token, name, files, logger)
         ).DisableAntiforgery();
 
         app.MapPost(

@@ -36,7 +36,7 @@ public class Backup(string name, int maxGenerations)
         name[0] is not '/' and not '\\' &&
         !Path.GetInvalidPathChars().Any(name.Contains);
 
-    public async void NewGeneration(IFormFileCollection files, ILogger<Backup> logger, string backupRoot)
+    public async Task NewGeneration(IFormFileCollection files, ILogger<Backup> logger, string backupRoot)
     {
         string path = Path.Combine(backupRoot, Name, Guid.NewGuid().ToString());
         string? first = null;

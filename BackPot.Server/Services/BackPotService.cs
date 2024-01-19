@@ -12,7 +12,7 @@ class BackPotService
     private readonly Dictionary<string, Backup> _backups;
     private string JsonPath => Path.Combine(_options.BackupRoot, "backpot.json");
 
-    public IResult Upload(string token, string name, IFormFileCollection files, ILogger<Backup> logger)
+    public async Task<IResult> Upload(string token, string name, IFormFileCollection files, ILogger<Backup> logger)
     {
         if (!_validation.IsValidToken(token))
             return Results.Unauthorized();
@@ -21,7 +21,7 @@ class BackPotService
             backup = new(name, _options.MaxGenerations);
             _backups[name] = backup;
         }
-        backup.NewGeneration(files, logger, _options.BackupRoot);
+        await backup.NewGeneration(files, logger, _options.BackupRoot);
         Save();
         return Results.Ok(backup);
     }
