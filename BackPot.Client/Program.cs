@@ -7,7 +7,7 @@ namespace BackPot.Client;
 internal abstract class Program
 {
     public static Configuration Configuration { get; } = Configuration.GetConfiguration();
-    static async void Main()
+    static async Task Main()
     {
         LogProvider.SetCurrentLogProvider(new ConsoleLogProvider());
         var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
