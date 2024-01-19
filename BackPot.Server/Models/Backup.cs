@@ -28,7 +28,7 @@ public class Backup(string name, int maxGenerations)
     }
 
     [JsonPropertyName("generations")]
-    public LinkedList<Generation> Generations = new();
+    public LinkedList<Generation> Generations { get; } = new();
 
     private static bool IsValidName(string name) =>
         !string.IsNullOrWhiteSpace(name) &&
