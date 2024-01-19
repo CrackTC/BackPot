@@ -94,6 +94,6 @@ internal abstract class Program
                 => service.GetFile(token, name, file, logger, generation)
         );
 
-        app.Run();
+        app.Run($"http://*:{app.Configuration.GetValue<int>("PORT")}/");
     }
 }
