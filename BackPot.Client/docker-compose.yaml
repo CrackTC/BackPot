@@ -1,0 +1,10 @@
+services:
+  backpot-client:
+    build: .
+    container_name: backpot-client
+    environment:
+      - HOST=http://localhost:8080
+      - TOKEN=my_leaked_passwd
+      - CRON=0 0 0 * * ?
+      - NAME=my_illust_favs
+      - ROOT=/ill

@@ -1,0 +1,11 @@
+services:
+  backpot-server:
+    build: .
+    container_name: backpot-server
+    environment:
+      - PORT=8080
+      - BACKUPROOT=/data
+      - TOKEN=my_leaked_passwd
+      - MAXGENERATIONS=3
+    volumes:
+      - ./data:/data
