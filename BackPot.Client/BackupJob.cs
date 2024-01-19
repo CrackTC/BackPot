@@ -31,7 +31,7 @@ internal class BackupJob : IJob
         foreach (var filePath in filePaths)
         {
             Console.WriteLine($"Backing up {filePath}");
-            var relativePath = filePath.Replace(Program.Configuration.Root, "").Replace('\\', '/');
+            var relativePath = Path.GetRelativePath(Program.Configuration.Root, filePath);
             var fileContent = new StreamContent(File.OpenRead(filePath));
             fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             content.Add(fileContent, relativePath, Path.GetFileName(filePath));
