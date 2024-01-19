@@ -21,4 +21,4 @@ jobs:
         with:
           context: ./BackPot.Client
           push: true
-          tags: cracktc/backpot.server:latest
+          tags: cracktc/backpot.client:latest
