@@ -47,7 +47,7 @@ internal abstract class Program
              [FromForm] IFormFileCollection files,
              ILogger<Backup> logger)
                 => service.Upload(token, name, files, logger)
-        );
+        ).DisableAntiforgery();
 
         app.MapPost(
             "/backups/{name:regex(^[a-zA-Z0-9_ -]+$)}/max_generations",
