@@ -33,6 +33,7 @@ public class Backup(string name, int maxGenerations)
     private static bool IsValidName(string name) =>
         !string.IsNullOrWhiteSpace(name) &&
         !name.Contains("..") &&
+        name[0] is not '/' and not '\\' &&
         !Path.GetInvalidPathChars().Any(name.Contains);
 
     public async void NewGeneration(IFormFileCollection files, ILogger<Backup> logger, string backupRoot)
