@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackPot.Server.Models;
 
 [Serializable]
-public class Backup(string name, int maxGenerations)
+public class Backup(string name, int maxGenerations, LinkedList<Generation>? generations = null)
 {
     [JsonPropertyName("name")]
     public string Name { get; } = name;
@@ -28,7 +28,7 @@ public class Backup(string name, int maxGenerations)
     }
 
     [JsonPropertyName("generations")]
-    public LinkedList<Generation> Generations { get; } = new();
+    public LinkedList<Generation> Generations { get; } = generations ?? new();
 
     private static bool IsValidName(string name) =>
         !string.IsNullOrWhiteSpace(name) &&
