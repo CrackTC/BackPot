@@ -5,11 +5,8 @@
     <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers/" />
-    <Folder Include="Properties/Controllers/" />
-  </ItemGroup>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+  </PropertyGroup>
 
 </Project>
