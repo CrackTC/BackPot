@@ -7,7 +7,6 @@ namespace BackPot.Server;
 
 internal abstract class Program
 {
-    public static ILogger Logger { get; private set; } = null!;
     static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +18,6 @@ internal abstract class Program
         builder.Services.AddSingleton<BackPotService>();
 
         var app = builder.Build();
-        Logger = app.Logger;
 
         app.MapGet(
             "/backups",
