@@ -56,7 +56,7 @@ internal abstract class Program
              [FromHeader(Name = "x-token")] string token,
              [FromForm] int maxGenerations)
                 => service.SetMaxGenerations(token, name, maxGenerations)
-        );
+        ).DisableAntiforgery();
 
         app.MapGet(
             "/backups/{name:regex(^[a-zA-Z0-9_ -]+$)}/generations",
